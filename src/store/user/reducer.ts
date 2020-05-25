@@ -11,6 +11,7 @@ const reducer: Reducer<InitialState, ActionTypes> = (state = initialState, actio
     case ActionTypeKeys.USER_SET:
       return {
         ...state,
+        loggedIn: true,
         user: action.payload.user,
       }
     case ActionTypeKeys.USER_DELETE:
