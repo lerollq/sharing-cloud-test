@@ -1,14 +1,12 @@
 import environments from '../config/environments'
 
-interface BaseResponse {
-  success: boolean
-}
-
-interface SuccessResponse<T> extends BaseResponse {
+interface SuccessResponse<T> {
+  success: true
   data: T
 }
 
-interface ErrorResponse extends BaseResponse {
+interface ErrorResponse {
+  success: false
   message: string
 }
 
