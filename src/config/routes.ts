@@ -1,6 +1,11 @@
-enum Routes {
-  Home = '/home',
+export enum PublicRoutes {
+  Home = '/',
+}
+
+export enum PrivateRoutes {
   Dashboard = '/dashboard',
 }
 
-export default Routes
+export enum GuestRoutes {
+  Signin = '/signin',
+}
