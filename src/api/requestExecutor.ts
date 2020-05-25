@@ -1,5 +1,6 @@
 import environments from '../config/environments'
-
+import store from '../store'
+import { userActions } from '../store/user'
 interface SuccessResponse<T> {
   success: true
   data: T
@@ -12,9 +13,16 @@ interface ErrorResponse {
 
 type ResponseType<T> = SuccessResponse<T> | ErrorResponse
 
-class RequestExecutor {
-  constructor() {}
+async function handleResponse<T>(response: Response): Promise<ResponseType<T>> {
+  if (response.status === 401) {
+    // If 401 UNAUTHORIZED, dispatch logout action which will then redirect the user to the login page
+    store.dispatch(userActions.logoutAction())
+  }
+  // Return parsed JSON Response
+  return response.json()
+}
 
+class RequestExecutor {
   public get<T>(path: string): Promise<ResponseType<T>> {
     return this.execRequest(path, { method: 'GET' })
   }
@@ -27,19 +35,18 @@ class RequestExecutor {
     return this.execRequest<T>(path, { method: 'DELETE' })
   }
 
-  private execRequest<T>(
-    path: string,
-    opts: RequestInit = {
+  private execRequest<T>(path: string, opts: Omit<RequestInit, 'headers'>): Promise<ResponseType<T>> {
+    // Retrieve Bearer Token from LocalStorage
+    const token = localStorage.getItem('token')
+    // Send request
+    return fetch(`${environments.api.domain}${path}`, {
+      ...opts,
       headers: {
         'Content-Type': 'application/json',
+        // Spread bearer token in header if exists
+        ...(token && { Authorization: `Bearer ${token}` }),
       },
-    }
-  ): Promise<ResponseType<T>> {
-    const token = localStorage.getItem('token')
-    if (token) {
-      Object.assign(opts.headers, { Authorization: `Bearer ${token}` })
-    }
-    return fetch(`${environments.api.domain}/${path}`, opts).then((response) => response.json() as Promise<ResponseType<T>>)
+    }).then((response) => handleResponse<T>(response))
   }
 }
 
