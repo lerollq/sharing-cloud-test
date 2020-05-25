@@ -10,21 +10,33 @@ import {
 
 const requestExecutor = new RequestExecutor()
 
-export const getLogin = () => requestExecutor.get<GetLoginResponse>('/login')
+const getLogin = () => requestExecutor.get<GetLoginResponse>('/login')
 
-export const getMe = () => requestExecutor.get<GetMeResponse>('/me')
+const getMe = () => requestExecutor.get<GetMeResponse>('/me')
 
-export const getLogout = () => requestExecutor.get<null>('/logout')
+const getLogout = () => requestExecutor.get<null>('/logout')
 
-export const getReset = () => requestExecutor.get<null>('/logout')
+const getReset = () => requestExecutor.get<null>('/logout')
 
-export const geUserById = (id: string) => requestExecutor.get<GetUserByIdResponse>(`/users/${id}`)
+const getUserById = (id: string) => requestExecutor.get<GetUserByIdResponse>(`/users/${id}`)
 
-export const getResource = () => requestExecutor.get<GetResourceResponse>('/resource')
+const getResource = () => requestExecutor.get<GetResourceResponse>('/resource')
 
-export const getBookings = () => requestExecutor.get<GetBookingsResponse>('/bookings')
+const getBookings = () => requestExecutor.get<GetBookingsResponse>('/bookings')
 
-export const postBooking = ({ name, duration }: { name: string; duration: number }) =>
+const postBooking = ({ name, duration }: { name: string; duration: number }) =>
   requestExecutor.post<PostBookingsResponse>('/bookings', { name, duration })
 
-export const deleteBookings = (bookingId: string) => requestExecutor.delete<null>(`/bookings${bookingId}`)
+const deleteBookings = (bookingId: string) => requestExecutor.delete<null>(`/bookings${bookingId}`)
+
+export default {
+  getLogin,
+  getLogout,
+  getMe,
+  getReset,
+  getUserById,
+  getResource,
+  getBookings,
+  postBooking,
+  deleteBookings,
+}

@@ -1,1 +1,1 @@
-export * as api from './methods'
+export { default as api } from './methods'
