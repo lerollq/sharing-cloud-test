@@ -16,11 +16,15 @@ class RequestExecutor {
   constructor() {}
 
   public get<T>(path: string): Promise<ResponseType<T>> {
-    return this.execRequest(path)
+    return this.execRequest(path, { method: 'GET' })
   }
 
   public post<T>(path: string, body: { [key: string]: any }): Promise<ResponseType<T>> {
     return this.execRequest<T>(path, { method: 'POST', body: JSON.stringify(body) })
+  }
+
+  public delete<T>(path: string) {
+    return this.execRequest<T>(path, { method: 'DELETE' })
   }
 
   private execRequest<T>(
