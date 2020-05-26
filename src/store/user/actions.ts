@@ -10,8 +10,8 @@ const getLoginAsyncAction = (): ThunkResult<Promise<void>> => async (dispatch) =
       return dispatch(getMeAsyncAction())
     } else {
       // TODO DISPLAY NOTIFICATION
+      return Promise.reject()
     }
-    return Promise.resolve()
   })
 }
 
@@ -32,6 +32,7 @@ const getMeAsyncAction = (): ThunkResult<Promise<void>> => async (dispatch) => {
           user: response.data,
         },
       })
+      return Promise.resolve()
     } else {
       // If getMe failed, remove token from local storage
       localStorage.removeItem('token')
@@ -39,12 +40,28 @@ const getMeAsyncAction = (): ThunkResult<Promise<void>> => async (dispatch) => {
       dispatch({
         type: ActionTypeKeys.USER_DELETE,
       })
+      return Promise.reject()
     }
-    return Promise.resolve()
+  })
+}
+
+const getLogoutAsyncAction = (): ThunkResult<Promise<void>> => async (dispatch) => {
+  return api.getLogout().then((response) => {
+    if (response.success) {
+      // Remove bearer token from local storage
+      localStorage.removeItem('token')
+      // Then remove user's information in user reducer
+      dispatch({
+        type: ActionTypeKeys.USER_DELETE,
+      })
+      return Promise.resolve()
+    }
+    return Promise.reject()
   })
 }
 
 export const actions = {
   getLoginAsyncAction,
   getMeAsyncAction,
+  getLogoutAsyncAction,
 }
