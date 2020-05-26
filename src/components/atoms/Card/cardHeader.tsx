@@ -5,7 +5,7 @@ interface Props {
   className?: string
   flexWrap?: 'wrap' | 'nowrap'
   alignItems?: 'center' | 'end' | 'start' | 'flex-end' | 'flex-start'
-  justifyContent?: 'center' | 'flex-end' | 'flex-start'
+  justifyContent?: 'center' | 'flex-end' | 'flex-start' | 'space-between'
 }
 
 const CardHeader: React.FC<Props> = ({ className, children }) => <div className={className}>{children}</div>
