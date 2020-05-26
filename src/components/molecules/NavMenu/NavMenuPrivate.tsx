@@ -3,6 +3,8 @@ import { MenuItem } from '../../atoms/MenuItem'
 import { LoadingButton } from '../../molecules/LoadingButton'
 import { userActions } from '../../../store/user'
 import { connect } from 'react-redux'
+import { Link } from '../../atoms/Link'
+import { PrivateRoutes } from '../../../config/routes'
 
 interface DispatchProps {
   getLogoutAsyncAction(): Promise<void>
@@ -19,7 +21,10 @@ const NavMenuPrivate: React.FC<NavMenuPrivateProps> = ({ getLogoutAsyncAction })
   return (
     <React.Fragment>
       <MenuItem>
-        <LoadingButton borderless onClick={handleOnLogout} loading={loading}>
+        <Link to={PrivateRoutes.Dashboard}>Dashboard</Link>
+      </MenuItem>
+      <MenuItem>
+        <LoadingButton onClick={handleOnLogout} loading={loading}>
           Logout
         </LoadingButton>
       </MenuItem>
