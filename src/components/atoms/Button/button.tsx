@@ -30,6 +30,8 @@ export default styled.button<StyledProps>`
   color: white;
   border: 2px solid white;
   cursor: pointer;
+  font-size: large;
+  font-weight: bold;
   ${({ color }) =>
     color === 'primary' &&
     `
