@@ -1,7 +1,6 @@
 import React from 'react'
-import { Image } from '../../atoms/Image'
-import welcomeImage from '../../../assets/images/welcome_cats.svg'
-import { Row, Col } from '../../atoms/Grid'
+import welcomeImage from '../../../assets/images/welcome.svg'
+import { Col } from '../../atoms/Grid'
 import styled from 'styled-components'
 
 interface StyledProps {
