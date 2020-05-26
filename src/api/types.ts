@@ -1,3 +1,5 @@
+import { Booking } from '../store/bookings/types'
+
 export interface GetLoginResponse {
   token: string
   expirationDate: string
@@ -17,15 +19,7 @@ export interface GetResourceResponse {
   maximumBookingDuration: number
   bookingDurationStep: number
 }
-export interface GetBookingsResponse {
-  [index: number]: {
-    id: string
-    start: string
-    end: string
-    name: string
-    userId: string
-  }
-}
+export type GetBookingsResponse = Booking[]
 
 export interface PostBookingsResponse {
   bookingId: string
