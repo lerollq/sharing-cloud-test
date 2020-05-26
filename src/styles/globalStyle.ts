@@ -6,6 +6,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   html, 
   body {
+    background-color: purple;
     height: 100vh;
     margin:0;
   }
@@ -19,6 +20,7 @@ export const GlobalStyle = createGlobalStyle`
     flex-direction: column;
   }
   h1, h2, h3, h4, h5, h6 {
+
     font-weight: 600;
    }
 `
