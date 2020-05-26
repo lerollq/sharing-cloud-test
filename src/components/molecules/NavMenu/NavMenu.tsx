@@ -3,9 +3,9 @@ import { userSelectors } from '../../../store/user'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { MenuItem } from '../../atoms/MenuItem'
-import { Link } from '../../atoms/Link'
-import { GuestRoutes } from '../../../config/routes'
 import { Button } from '../../atoms/Button'
+import NavMenuGuest from './NavMenuGuest'
+import NavMenuPrivate from './NavMenuPrivate'
 
 interface StateToProps {
   loggedIn: boolean
@@ -19,23 +19,7 @@ interface OwnProps {
 type Props = OwnProps & StateToProps
 
 const NavMenu: React.FC<Props> = ({ loggedIn, className }) => (
-  <ul className={className}>
-    {loggedIn ? (
-      <React.Fragment>
-        <MenuItem>
-          <Button color='primary' borderless>
-            Logout
-          </Button>
-        </MenuItem>
-      </React.Fragment>
-    ) : (
-      <React.Fragment>
-        <MenuItem>
-          <Link to={GuestRoutes.Signin}>Sign in</Link>
-        </MenuItem>
-      </React.Fragment>
-    )}
-  </ul>
+  <ul className={className}>{loggedIn ? <NavMenuPrivate /> : <NavMenuGuest />}</ul>
 )
 
 const mapStateToProps = (state: AppState) => ({
