@@ -1,11 +1,10 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-interface OwnProps {
+interface StyledProps {
   color?: 'primary' | 'secondary'
   className?: string
   type?: 'button' | 'submit' | 'reset'
-  loading?: boolean
   block?: boolean
   disabled?: boolean
   borderless?: boolean
@@ -13,7 +12,7 @@ interface OwnProps {
   onClick?(e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void
 }
 
-export type ButtonProps = OwnProps
+export type ButtonProps = StyledProps
 
 const Button: React.FC<ButtonProps> = ({ className, children, onClick, disabled, type = 'button' }) => {
   return (
@@ -23,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({ className, children, onClick, disabled,
   )
 }
 
-export default styled(Button)`
+export default styled.button<StyledProps>`
   display: inline-block;
   border-radius: 4px;
   padding: 0.5rem 1rem;
@@ -37,8 +36,8 @@ export default styled(Button)`
       background: purple;
       color: white;
     `}
-  ${({ loading, disabled }) =>
-    (loading || disabled) &&
+  ${({ disabled }) =>
+    disabled &&
     `
       cursor: not-allowed;
       opacity: 0.5;
