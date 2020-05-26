@@ -1,6 +1,6 @@
 import environments from '../config/environments'
 import store from '../store'
-import { userActions } from '../store/user'
+import { ActionTypeKeys } from '../store/user/types'
 interface SuccessResponse<T> {
   success: true
   data: T
@@ -15,8 +15,10 @@ type ResponseType<T> = SuccessResponse<T> | ErrorResponse
 
 async function handleResponse<T>(response: Response): Promise<ResponseType<T>> {
   if (response.status === 401) {
-    // If 401 UNAUTHORIZED, dispatch logout action which will then redirect the user to the login page
-    store.dispatch(userActions.logoutAction())
+    // If 401 UNAUTHORIZED, remove first bearer token in local storage then dispatch USER_DELETE type which will remove user's information in user reducer
+    // then will redirect the user to the login page
+    localStorage.removeItem('item')
+    store.dispatch({ type: ActionTypeKeys.USER_DELETE })
   }
   // Return parsed JSON Response
   return response.json()
