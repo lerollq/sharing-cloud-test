@@ -11,7 +11,7 @@ export interface GetMeResponse {
   name: string
 }
 
-export interface GetUserByIdResponse extends GetMeResponse {}
+export type GetUserByIdResponse = GetMeResponse
 
 export type GetResourceResponse = Resource
 

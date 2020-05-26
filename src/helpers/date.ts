@@ -2,7 +2,7 @@
  * Format date in this form XXd XXh XXm XXs
  * @param date in milliseconds
  */
-export const formatDate = (date: number) => {
+export const formatDate = (date: number): string => {
   const days = Math.floor(date / (1000 * 60 * 60 * 24))
   const hours = Math.floor((date % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
   const minutes = Math.floor((date % (1000 * 60 * 60)) / (1000 * 60))

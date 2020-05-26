@@ -13,7 +13,7 @@ interface DispatchProps {
 const Signin: React.FC<DispatchProps> = ({ getLoginAsyncAction }) => {
   const [loading, setLoading] = useState(false)
 
-  const handleOnConnect = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleOnConnect = async () => {
     setLoading(true)
     getLoginAsyncAction().catch(() => {
       setLoading(false)

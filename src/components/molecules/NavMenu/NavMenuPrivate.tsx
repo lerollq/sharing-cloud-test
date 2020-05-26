@@ -14,7 +14,7 @@ export type NavMenuPrivateProps = DispatchProps
 
 const NavMenuPrivate: React.FC<NavMenuPrivateProps> = ({ getLogoutAsyncAction }) => {
   const [loading, setLoading] = useState(false)
-  const handleOnLogout = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleOnLogout = () => {
     setLoading(true)
     getLogoutAsyncAction().catch(() => setLoading(false))
   }

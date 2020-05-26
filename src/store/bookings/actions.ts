@@ -20,10 +20,7 @@ const deleteBookingAsyncAction = (bookingId: string): ThunkResult<Promise<Action
   })
 }
 
-const postBookingAsyncAction = (name: string, duration: number): ThunkResult<Promise<void>> => async (
-  dispatch,
-  getState
-) => {
+const postBookingAsyncAction = (name: string, duration: number): ThunkResult<Promise<void>> => async (dispatch) => {
   return api.postBooking({ name, duration }).then((response) => {
     if (response.success) {
       dispatch(getBookingsAsyncAction())

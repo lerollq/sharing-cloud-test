@@ -38,7 +38,7 @@ const BookingRow: React.FC<Props> = ({
   const startTime = new Date(start).getTime()
   const endTime = new Date(end).getTime()
 
-  const handleOnDelete = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleOnDelete = () => {
     setDeleteLoading(true)
     deleteBookingAsyncAction(bookingId).finally(() => {
       setDeleteLoading(false)
