@@ -47,7 +47,7 @@ const BookingRow: React.FC<Props> = ({
   return (
     <div className={className}>
       <Row>
-        <Col xs={12} sm={9}>
+        <Col xs={12} xl={9}>
           <strong>From:&nbsp;</strong>
           {new Date(startTime).toLocaleString()}
           <br />
@@ -57,7 +57,7 @@ const BookingRow: React.FC<Props> = ({
           <strong>Subject:&nbsp;</strong>
           {name}
         </Col>
-        <Col xs={12} sm={3}>
+        <Col xs={12} xl={3}>
           <LoadingButton
             block
             color='primary'
