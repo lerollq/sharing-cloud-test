@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 interface StyledProps {
   color?: 'primary' | 'secondary'
@@ -14,13 +14,13 @@ interface StyledProps {
 
 export type ButtonProps = StyledProps
 
-const Button: React.FC<ButtonProps> = ({ className, children, onClick, disabled, type = 'button' }) => {
-  return (
-    <button onClick={onClick} type={type} className={className} disabled={disabled}>
-      {children}
-    </button>
-  )
-}
+// const Button: React.FC<ButtonProps> = ({ className, children, onClick, disabled, type = 'button' }) => {
+//   return (
+//     <button onClick={onClick} type={type} className={className} disabled={disabled}>
+//       {children}
+//     </button>
+//   )
+// }
 
 export default styled.button<StyledProps>`
   display: inline-block;

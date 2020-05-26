@@ -23,12 +23,6 @@ export const reducer: Reducer<InitialState, ActionTypes> = (state = initialState
         },
       }
     case ActionTypeKeys.BOOKING_DELETE:
-      console.log(
-        'Booking ID DELETE',
-        action.payload.bookingId,
-        state.bookings.length,
-        state.bookings.filter((b) => b.id !== action.payload.bookingId).length
-      )
       return {
         ...state,
         bookings: state.bookings.filter((b) => b.id !== action.payload.bookingId),

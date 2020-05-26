@@ -1,6 +1,5 @@
 import React from 'react'
 import { MenuItem } from '../../atoms/MenuItem'
-import { Button } from '../../atoms/Button'
 import { GuestRoutes } from '../../../config/routes'
 import { Link } from '../../atoms/Link'
 

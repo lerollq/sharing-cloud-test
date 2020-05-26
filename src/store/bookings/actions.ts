@@ -26,7 +26,6 @@ const postBookingAsyncAction = (name: string, duration: number): ThunkResult<Pro
 ) => {
   return api.postBooking({ name, duration }).then((response) => {
     if (response.success) {
-      const userId = getState().user.user?.id
       dispatch(getBookingsAsyncAction())
     }
   })

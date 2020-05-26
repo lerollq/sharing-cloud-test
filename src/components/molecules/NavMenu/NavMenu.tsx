@@ -2,8 +2,6 @@ import React from 'react'
 import { userSelectors } from '../../../store/user'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { MenuItem } from '../../atoms/MenuItem'
-import { Button } from '../../atoms/Button'
 import NavMenuGuest from './NavMenuGuest'
 import NavMenuPrivate from './NavMenuPrivate'
 

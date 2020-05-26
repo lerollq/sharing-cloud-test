@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { resourceSelectors, resourceActions } from '../../../store/resource'
 import { connect } from 'react-redux'
 import { Card, CardHeader } from '../../atoms/Card'
@@ -29,7 +29,8 @@ const ResourceDetails: React.FC<ResourceDetailsProps> = React.memo(
      * This method check every second if current time is between start & end date of any bookings
      * And will update current available state if different
      */
-    const checkAvailability = () => {
+
+    const checkAvailability = useCallback(() => {
       const currentTime = new Date().getTime()
       const isAvailable = !bookingsTime.some(
         ({ end, start }) => currentTime > new Date(start).getTime() && currentTime < new Date(end).getTime()
@@ -37,7 +38,7 @@ const ResourceDetails: React.FC<ResourceDetailsProps> = React.memo(
       if (isAvailable !== available) {
         setAvailable(isAvailable)
       }
-    }
+    }, [available, bookingsTime])
 
     useEffect(() => {
       // If resource not loaded, call getResourceAsyncAction
@@ -58,7 +59,7 @@ const ResourceDetails: React.FC<ResourceDetailsProps> = React.memo(
         clearInterval(intervalId)
       }
       // Re-render only if loadedn bookingsTime or available state change
-    }, [loaded, bookingsTime, available])
+    }, [loaded, bookingsTime, available, getResourceAsyncAction, checkAvailability])
 
     return (
       <Card>

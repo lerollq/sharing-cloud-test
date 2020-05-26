@@ -1,6 +1,5 @@
 import { api } from '../../api'
 import { ActionTypeKeys, ActionTypes, Resource } from './types'
-import { bookingsActions } from '../bookings'
 
 const getResourceAsyncAction = (): ThunkResult<Promise<ActionTypes>> => async (dispatch) => {
   return api.getResource().then((response) => {
