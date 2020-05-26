@@ -3,7 +3,7 @@ import { userSelectors } from '../../../store/user'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { MenuItem } from '../../atoms/MenuItem'
-import { Link } from 'react-router-dom'
+import { Link } from '../../atoms/Link'
 import { GuestRoutes } from '../../../config/routes'
 import { Button } from '../../atoms/Button'
 
