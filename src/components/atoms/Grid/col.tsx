@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 interface StyledProp {
   className?: string
@@ -6,6 +6,7 @@ interface StyledProp {
   sm?: number
   md?: number
   lg?: number
+  xl?: number
 }
 
 const StyledCol = styled.div<StyledProp>`
@@ -14,19 +15,46 @@ const StyledCol = styled.div<StyledProp>`
   padding-left: 5px;
   padding-right: 5px;
   margin-bottom: 5px;
-  ${({ xs }) => (xs ? `width: ${(xs / 12) * 100}%` : 'width:100%')};
+  width: auto;
 
-  @media only screen and (min-width: 768px) {
-    ${({ sm }) => sm && `width: ${(sm / 12) * 100}%`};
+  @media only screen and (min-width: 0px) {
+    ${({ xs }) =>
+      xs &&
+      `
+        width: ${(xs / 12) * 100}%;
+      `};
   }
 
-  @media only screen and (min-width: 768px) {
-    ${({ md }) => md && `width: ${(md / 12) * 100}%`};
+  @media only screen and (min-width: 540px) {
+    ${({ sm }) =>
+      sm &&
+      `
+        width: ${(sm / 12) * 100}%;
+      `};
   }
 
-  @media only screen and (min-width: 768px) {
-    ${({ lg }) => lg && `width: ${(lg / 12) * 100}%`};
+  @media only screen and (min-width: 720px) {
+    ${({ md }) =>
+      md &&
+      `
+        width: ${(md / 12) * 100}%;
+      `};
+  }
+
+  @media only screen and (min-width: 960px) {
+    ${({ lg }) =>
+      lg &&
+      `
+        width: ${(lg / 12) * 100}%;
+      `};
+  }
+
+  @media only screen and (min-width: 1140px) {
+    ${({ xl }) =>
+      xl &&
+      `
+        width: ${(xl / 12) * 100}%;
+      `};
   }
 `
-
 export default StyledCol
