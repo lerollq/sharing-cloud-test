@@ -1,7 +1,26 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { userActions } from './store/user'
+import { connect } from 'react-redux'
+import Pages from './components/pages'
 
-function App() {
-  return <div className='App'></div>
+interface DispatchProps {
+  getMeAsyncAction(): Promise<void>
 }
 
-export default App
+const App: React.FC<DispatchProps> = ({ getMeAsyncAction }) => {
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    getMeAsyncAction().finally(() => {
+      setLoading(false)
+    })
+  }, [getMeAsyncAction])
+
+  return <React.Fragment>{loading ? 'loading' : <Pages />}</React.Fragment>
+}
+
+const mapDispatchToProps = (dispatch: ThunkDispatch) => ({
+  getMeAsyncAction: () => dispatch(userActions.getMeAsyncAction()),
+})
+
+export default connect(null, mapDispatchToProps)(App)
