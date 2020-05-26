@@ -6,13 +6,13 @@ interface Props {
 }
 
 const Footer: React.FC<Props> = ({ className }) => (
-  <div className={className}>
+  <footer className={className}>
     Made with{' '}
     <span role='img' aria-label='heart'>
       ❤️
     </span>{' '}
     by LaSmala - No Copyright {new Date().getFullYear()}
-  </div>
+  </footer>
 )
 
 export default styled(Footer)`
