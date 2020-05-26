@@ -1,22 +1,50 @@
-import { ActionTypeKeys, ActionTypes, User } from './types'
+import { ActionTypeKeys } from './types'
+import { api } from '../../api'
 
-const setUserAction = (user: User): ActionTypes => {
-  return {
-    type: ActionTypeKeys.USER_SET,
-    payload: {
-      user,
-    },
-  }
+const getLoginAsyncAction = (): ThunkResult<Promise<void>> => async (dispatch) => {
+  return api.getLogin().then((response) => {
+    if (response.success) {
+      // If success set bearer token in local storage
+      localStorage.setItem('token', response.data.token)
+      // Then call getMeAsyncAction to retrieve user profil
+      return dispatch(getMeAsyncAction())
+    } else {
+      // TODO DISPLAY NOTIFICATION
+    }
+    return Promise.resolve()
+  })
 }
 
-const logoutAction = (): ActionTypes => {
-  localStorage.removeItem('token')
-  return {
-    type: ActionTypeKeys.USER_DELETE,
+const getMeAsyncAction = (): ThunkResult<Promise<void>> => async (dispatch) => {
+  // Check first if bearer token exists in local Storage
+  // If not return promise, no need to call the api
+  if (!localStorage.getItem('token')) {
+    return Promise.resolve()
   }
+
+  // Call the API
+  return api.getMe().then((response) => {
+    if (response.success) {
+      // Set user information in user reducer
+      dispatch({
+        type: ActionTypeKeys.USER_SET,
+        payload: {
+          user: response.data,
+        },
+      })
+    } else {
+      // If getMe failed, remove token from local storage
+      localStorage.removeItem('token')
+      // Then remove user's information in user reducer
+      dispatch({
+        type: ActionTypeKeys.USER_DELETE,
+      })
+    }
+    return Promise.resolve()
+  })
 }
 
 export const actions = {
-  setUserAction,
-  logoutAction,
+  getLoginAsyncAction,
+  getMeAsyncAction,
 }
