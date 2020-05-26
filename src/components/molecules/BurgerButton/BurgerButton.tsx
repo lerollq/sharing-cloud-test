@@ -18,6 +18,9 @@ export default styled(BurgerButton)`
   display: none;
   margin-left: auto;
   transition: transform 0.4s;
+  > button:focus {
+    outline: none;
+  }
   &:hover {
     transform: rotate(180deg);
   }
