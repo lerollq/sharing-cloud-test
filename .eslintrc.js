@@ -18,5 +18,6 @@ module.exports = {
     'react/prop-types': 0,
     'react/display-name': 0,
     '@typescript-eslint/explicit-module-boundary-types': 0,
+    '@typescript-eslint/parser': 0,
   },
 }
