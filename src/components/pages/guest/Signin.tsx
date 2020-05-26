@@ -3,7 +3,6 @@ import { Card, CardHeader, CardBody } from '../../atoms/Card'
 import { Row, Col } from '../../atoms/Grid'
 import { LoadingButton } from '../../molecules/LoadingButton'
 import profilPic from '../../../assets/images/profil_pic.svg'
-import { Image } from '../../atoms/Image'
 import { connect } from 'react-redux'
 import { userActions } from '../../../store/user'
 
@@ -28,7 +27,7 @@ const Signin: React.FC<DispatchProps> = ({ getLoginAsyncAction }) => {
           <CardHeader justifyContent='center'>
             <Col>
               <Row justifyContent='center'>
-                <Image width='50%' src={profilPic} title='Profil illustration' alt='Profile illustration' />
+                <img width='50%' src={profilPic} title='Profil illustration' alt='Profile illustration' />
               </Row>
               <Row justifyContent='center'>
                 <h1>Welcome</h1>
