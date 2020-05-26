@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { formatDate } from '../../../helpers/date'
 
 interface OwnProps {
   date: string | number
@@ -18,15 +19,7 @@ const CountDown: React.FC<OwnProps> = ({ date, handler }) => {
         // Then trigger the props handler function if exists
         handler?.()
       }
-      const days = Math.floor(timeleft / (1000 * 60 * 60 * 24))
-      const hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-      const minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60))
-      const seconds = Math.floor((timeleft % (1000 * 60)) / 1000)
-      setTimeleft(
-        `${days > 0 ? `${days}d ` : '0d '}${hours > 0 ? `${hours}h ` : '0h '}${minutes > 0 ? `${minutes}m ` : '0m '}${
-          seconds > 0 ? `${seconds}s` : '0s '
-        }`
-      )
+      setTimeleft(formatDate(timeleft))
     }, 1000)
 
     return () => {
