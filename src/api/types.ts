@@ -1,4 +1,5 @@
 import { Booking } from '../store/bookings/types'
+import { Resource } from '../store/resource/types'
 
 export interface GetLoginResponse {
   token: string
@@ -12,13 +13,8 @@ export interface GetMeResponse {
 
 export interface GetUserByIdResponse extends GetMeResponse {}
 
-export interface GetResourceResponse {
-  id: string
-  name: string
-  minimumBookingDuration: number
-  maximumBookingDuration: number
-  bookingDurationStep: number
-}
+export type GetResourceResponse = Resource
+
 export type GetBookingsResponse = Booking[]
 
 export interface PostBookingsResponse {
