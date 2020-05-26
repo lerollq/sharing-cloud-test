@@ -7,9 +7,9 @@ interface Props {
 }
 
 const Header: React.FC<Props> = ({ className }) => (
-  <div className={className}>
+  <header className={className}>
     <Navbar />
-  </div>
+  </header>
 )
 
 export default styled(Header)`
