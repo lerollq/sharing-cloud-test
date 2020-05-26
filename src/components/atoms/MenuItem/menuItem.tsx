@@ -1,15 +1,16 @@
-import React from 'react'
 import styled from 'styled-components'
 
-interface OwnProps {
-  className?: string
-}
-
-const MenuItem: React.FC<OwnProps> = ({ className, children }) => <li className={className}>{children}</li>
-
-export default styled(MenuItem)`
+export default styled.li`
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  @media only screen and (min-width: 768px) {
+    margin-right: 10px;
+  }
+
   @media only screen and (max-width: 768px) {
     text-align: center;
+    margin-top: 10px;
   }
 `
