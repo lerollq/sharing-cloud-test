@@ -17,6 +17,7 @@ const reducer: Reducer<InitialState, ActionTypes> = (state = initialState, actio
     case ActionTypeKeys.USER_DELETE:
       return {
         ...state,
+        loggedIn: false,
         user: undefined,
       }
     default:
