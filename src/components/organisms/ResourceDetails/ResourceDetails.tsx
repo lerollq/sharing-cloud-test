@@ -21,66 +21,67 @@ interface StateToProps {
 
 type ResourceDetailsProps = StateToProps & DispatchToProps
 
-const ResourceDetails: React.FC<ResourceDetailsProps> = ({
-  loaded,
-  loading,
-  getResourceAsyncAction,
-  resource,
-  bookingsTime,
-}) => {
-  const [available, setAvailable] = useState(false)
+const ResourceDetails: React.FC<ResourceDetailsProps> = React.memo(
+  ({ loaded, loading, getResourceAsyncAction, resource, bookingsTime }) => {
+    const [available, setAvailable] = useState(false)
 
-  /**
-   * This method check every second if current time is between start & end date of any bookings
-   * And will update current available state if different
-   */
-  const checkAvailability = () => {
-    const currentTime = new Date().getTime()
-    const isAvailable = !bookingsTime.some(
-      ({ end, start }) => currentTime > new Date(start).getTime() && currentTime < new Date(end).getTime()
+    /**
+     * This method check every second if current time is between start & end date of any bookings
+     * And will update current available state if different
+     */
+    const checkAvailability = () => {
+      const currentTime = new Date().getTime()
+      const isAvailable = !bookingsTime.some(
+        ({ end, start }) => currentTime > new Date(start).getTime() && currentTime < new Date(end).getTime()
+      )
+      if (isAvailable !== available) {
+        setAvailable(isAvailable)
+      }
+    }
+
+    useEffect(() => {
+      // If resource not loaded, call getResourceAsyncAction
+      if (!loaded) {
+        getResourceAsyncAction()
+      }
+
+      // Start interval to check resource availability
+      const intervalId = setInterval(
+        (function iife() {
+          checkAvailability()
+        })(),
+        1000
+      )
+
+      return () => {
+        // Properly delete interval
+        clearInterval(intervalId)
+      }
+      // Re-render only if loadedn bookingsTime or available state change
+    }, [loaded, bookingsTime, available])
+
+    return (
+      <Card>
+        <CardHeader alignItems='center' justifyContent='space-between'>
+          <h2> {resource.name}</h2>
+          <Badge color={available ? 'success' : 'danger'}>{available ? 'Available' : 'Not Available'}</Badge>
+        </CardHeader>
+        <LoadingCardBody loading={loading}>
+          <Row>
+            <strong>Minimum booking reservation:</strong>
+            {resource.minimumBookingDuration} minutes
+          </Row>
+          <br />
+          <Row>
+            <strong>Maximum booking reservation:</strong>
+            {resource.maximumBookingDuration} minutes
+          </Row>
+          <br />
+        </LoadingCardBody>
+      </Card>
     )
-    if (isAvailable !== available) {
-      setAvailable(isAvailable)
-    }
   }
-
-  useEffect(() => {
-    // If resource not loaded, call getResourceAsyncAction
-    if (!loaded) {
-      getResourceAsyncAction()
-    }
-
-    // Start interval to check resource availability
-    const intervalId = setInterval(checkAvailability, 1000)
-
-    return () => {
-      // Properly delete interval
-      clearInterval(intervalId)
-    }
-    // Re-render only if loadedn bookingsTime or available state change
-  }, [loaded, bookingsTime, available])
-
-  return (
-    <Card>
-      <CardHeader alignItems='center' justifyContent='space-between'>
-        <h2> {resource.name}</h2>
-        <Badge color={available ? 'success' : 'danger'}>{available ? 'Available' : 'Not Available'}</Badge>
-      </CardHeader>
-      <LoadingCardBody loading={loading}>
-        <Row>
-          <strong>Minimum booking reservation:</strong>
-          {resource.minimumBookingDuration} minutes
-        </Row>
-        <br />
-        <Row>
-          <strong>Maximum booking reservation:</strong>
-          {resource.maximumBookingDuration} minutes
-        </Row>
-        <br />
-      </LoadingCardBody>
-    </Card>
-  )
-}
+)
 
 const mapStateToProps = (state: AppState) => ({
   resource: resourceSelectors.selectResource(state),
