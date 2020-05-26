@@ -16,7 +16,9 @@ const Signin: React.FC<DispatchProps> = ({ getLoginAsyncAction }) => {
 
   const handleOnConnect = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     setLoading(true)
-    getLoginAsyncAction().finally(() => setLoading(false))
+    getLoginAsyncAction().catch(() => {
+      setLoading(false)
+    })
   }
 
   return (
@@ -26,10 +28,10 @@ const Signin: React.FC<DispatchProps> = ({ getLoginAsyncAction }) => {
           <CardHeader justifyContent='center'>
             <Col>
               <Row justifyContent='center'>
-                <h1>Welcome</h1>
+                <Image width='50%' src={profilPic} title='Profil illustration' alt='Profile illustration' />
               </Row>
               <Row justifyContent='center'>
-                <Image width='50%' src={profilPic} title='Profil illustration' alt='Profile illustration' />
+                <h1>Welcome</h1>
               </Row>
             </Col>
           </CardHeader>
