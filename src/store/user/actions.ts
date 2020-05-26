@@ -1,5 +1,6 @@
 import { ActionTypeKeys } from './types'
 import { api } from '../../api'
+import { notif } from '../../helpers/toast'
 
 const getLoginAsyncAction = (): ThunkResult<Promise<void>> => async (dispatch) => {
   return api.getLogin().then((response) => {
@@ -9,7 +10,7 @@ const getLoginAsyncAction = (): ThunkResult<Promise<void>> => async (dispatch) =
       // Then call getMeAsyncAction to retrieve user profil
       return dispatch(getMeAsyncAction())
     } else {
-      // TODO DISPLAY NOTIFICATION
+      notif.error(response.message)
       return Promise.reject()
     }
   })
@@ -34,6 +35,7 @@ const getMeAsyncAction = (): ThunkResult<Promise<void>> => async (dispatch) => {
       })
       return Promise.resolve()
     } else {
+      notif.error(response.message)
       // If getMe failed, remove token from local storage
       localStorage.removeItem('token')
       // Then remove user's information in user reducer
@@ -56,6 +58,7 @@ const getLogoutAsyncAction = (): ThunkResult<Promise<void>> => async (dispatch) 
       })
       return Promise.resolve()
     }
+    notif.error(response.message)
     return Promise.reject()
   })
 }
