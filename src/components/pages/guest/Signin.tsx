@@ -37,7 +37,7 @@ const Signin: React.FC<DispatchProps> = ({ getLoginAsyncAction }) => {
           </CardHeader>
           <CardBody>
             <Grid.Row justifyContent='center'>
-              <Button color='primary' block onClick={handleOnConnect} loading={loading} disabled={loading}>
+              <Button color='primary' block onClick={handleOnConnect} loading={+loading} disabled={loading}>
                 Connect
               </Button>
             </Grid.Row>

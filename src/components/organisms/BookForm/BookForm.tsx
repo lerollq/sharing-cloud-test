@@ -67,7 +67,7 @@ const BookForm: React.FC<BookFormProps> = ({
               <SpanFeedback>{validators.lengthBookName(bookName)}</SpanFeedback>
             </FormGroup>
 
-            <Button color='primary' block type='submit' loading={loading} disabled={loading}>
+            <Button color='primary' block type='submit' loading={+loading} disabled={loading}>
               Book
             </Button>
           </Grid.Row>

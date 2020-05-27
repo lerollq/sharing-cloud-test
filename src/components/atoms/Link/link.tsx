@@ -10,7 +10,7 @@ interface OwnProps {
 export type LinkProps = OwnProps
 
 const Link: React.FC<LinkProps> = ({ to, className, children }) => (
-  <RouterLink to={to} className={className}>
+  <RouterLink to={to} className={className} role='button'>
     {children}
   </RouterLink>
 )

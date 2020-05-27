@@ -62,7 +62,7 @@ const BookingRow: React.FC<Props> = ({
             color='primary'
             onClick={handleOnDelete}
             disabled={userId !== bookerId || deleteLoading}
-            loading={deleteLoading}>
+            loading={+deleteLoading}>
             Delete
           </Button>
         </Grid.Col>

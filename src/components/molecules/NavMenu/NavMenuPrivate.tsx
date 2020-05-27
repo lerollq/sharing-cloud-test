@@ -15,18 +15,21 @@ const NavMenuPrivate: React.FC = () => {
   const handleOnLogout = () => {
     // Set loading to true , this will display the loading spinner
     setLoading(true)
-    api.getLogout().then((response) => {
-      setLoading(false)
-      if (response.success) {
+    api
+      .getLogout()
+      .then((response) => {
+        setLoading(false)
         // Remove bearer token from local storage
         localStorage.removeItem('token')
         // Then remove user's information in user reducer
         return dispatch({
           type: ActionTypeKeys.USER_DELETE,
         })
-      }
-      notif.error(response.message)
-    })
+      })
+      .catch((err) => {
+        setLoading(false)
+        notif.error(err.message)
+      })
   }
   return (
     <React.Fragment>
@@ -34,7 +37,7 @@ const NavMenuPrivate: React.FC = () => {
         <Link to={PrivateRoutes.Dashboard}>Dashboard</Link>
       </MenuItem>
       <MenuItem>
-        <Button onClick={handleOnLogout} loading={loading} color='primary'>
+        <Button onClick={handleOnLogout} loading={+loading} color='primary'>
           Logout
         </Button>
       </MenuItem>

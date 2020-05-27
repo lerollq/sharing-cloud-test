@@ -4,7 +4,7 @@ export interface ButtonStyledProps {
   color?: 'primary' | 'secondary'
   block?: boolean
   outlined?: boolean
-  loading?: boolean
+  loading?: number
 }
 
 const loadingOpacity = keyframes`
