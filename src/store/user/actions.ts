@@ -1,6 +1,5 @@
 import { ActionTypeKeys } from './types'
 import { api } from '../../api'
-import { notif } from '../../helpers/toast'
 
 const getMeAsyncAction = (): ThunkResult<Promise<void>> => async (dispatch) => {
   // Check first if bearer token exists in local Storage

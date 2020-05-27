@@ -1,6 +1,5 @@
 import { api } from '../../api'
 import { ActionTypeKeys, ActionTypes, Booking } from './types'
-import { notif } from '../../helpers/toast'
 
 const getBookingsAsyncAction = (): ThunkResult<Promise<ActionTypes>> => async (dispatch) =>
   api.getBookings().then((response) => {

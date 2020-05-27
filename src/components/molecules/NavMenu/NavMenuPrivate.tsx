@@ -6,7 +6,6 @@ import { PrivateRoutes } from '../../../config/routes'
 import { Button } from '../../../styled'
 import { api } from '../../../api'
 import { ActionTypeKeys } from '../../../store/user/types'
-import { notif } from '../../../helpers/toast'
 
 const NavMenuPrivate: React.FC = () => {
   const [loading, setLoading] = useState(false)
