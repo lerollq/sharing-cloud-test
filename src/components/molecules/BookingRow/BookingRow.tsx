@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { bookingsSelectors, bookingsActions } from '../../../store/bookings'
 import { Row, Col } from '../../atoms/Grid'
 import { userSelectors } from '../../../store/user'
-import { LoadingButton } from '../LoadingButton'
+import { Button } from '../../../styled'
 
 interface OwnProps {
   bookingId: string
@@ -58,15 +58,14 @@ const BookingRow: React.FC<Props> = ({
           {name}
         </Col>
         <Col xs={12} xl={3}>
-          <LoadingButton
+          <Button
             block
-            color="primary"
+            color='primary'
             onClick={handleOnDelete}
-            disabled={userId !== bookerId}
-            loading={deleteLoading}
-          >
+            disabled={userId !== bookerId || deleteLoading}
+            loading={deleteLoading}>
             Delete
-          </LoadingButton>
+          </Button>
         </Col>
       </Row>
     </div>
