@@ -2,7 +2,7 @@ import { DefaultTheme } from 'styled-components'
 
 export default {
   colors: {
-    primary: '#a304a3',
+    primary: '#800080',
   },
   breakpoints: {
     xs: '0px',
