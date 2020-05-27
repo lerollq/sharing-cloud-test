@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import App from './App'
 import store from './store'
-import { GlobalStyle } from './styles/globalStyle'
+import { GlobalStyle } from './styled/globalStyle'
 import 'react-toastify/dist/ReactToastify.css'
 import * as serviceWorker from './serviceWorker'
 
@@ -20,6 +20,6 @@ ReactDOM.render(
     <ToastContainer />
   </React.StrictMode>,
 
-  document.getElementById('root'),
+  document.getElementById('root')
 )
 serviceWorker.unregister()
