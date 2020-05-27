@@ -5,7 +5,8 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import App from './App'
 import store from './store'
-import { GlobalStyle } from './styled/globalStyle'
+import { GlobalStyle, theme } from './styled'
+import { ThemeProvider } from 'styled-components'
 import 'react-toastify/dist/ReactToastify.css'
 import * as serviceWorker from './serviceWorker'
 
@@ -14,7 +15,9 @@ ReactDOM.render(
     <GlobalStyle />
     <Provider store={store}>
       <Router>
-        <App />
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
       </Router>
     </Provider>
     <ToastContainer />
