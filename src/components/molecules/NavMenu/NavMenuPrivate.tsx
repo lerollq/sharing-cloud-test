@@ -28,7 +28,6 @@ const NavMenuPrivate: React.FC = () => {
       })
       .catch((err) => {
         setLoading(false)
-        notif.error(err.message)
       })
   }
   return (

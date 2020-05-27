@@ -49,7 +49,7 @@ export default styled(BaseButton)<ButtonStyledProps>`
     `}
 
     ${({ loading }) =>
-      loading &&
+      loading === 1 &&
       css`
         animation: ${loadingOpacity} 1s linear infinite;
       `}

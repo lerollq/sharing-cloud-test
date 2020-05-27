@@ -25,9 +25,11 @@ const BookForm: React.FC<BookFormProps> = ({
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
-    postBookingAsyncAction(bookName, bookDuration).finally(() => {
-      setLoading(false)
-    })
+    postBookingAsyncAction(bookName, bookDuration)
+      .catch(() => {})
+      .finally(() => {
+        setLoading(false)
+      })
   }
 
   return (

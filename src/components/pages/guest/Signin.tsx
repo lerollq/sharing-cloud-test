@@ -15,9 +15,8 @@ const Signin: React.FC<DispatchProps> = ({ getLoginAsyncAction }) => {
 
   const handleOnConnect = async () => {
     setLoading(true)
-    getLoginAsyncAction().catch((err) => {
+    getLoginAsyncAction().catch(() => {
       setLoading(false)
-      notif.error(err.message)
     })
   }
 
