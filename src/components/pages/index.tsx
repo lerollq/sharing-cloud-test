@@ -10,8 +10,8 @@ import { userSelectors } from '../../store/user'
 import { PrivateRoutes, GuestRoutes, PublicRoutes } from '../../config/routes'
 import { PrivatePages } from './private'
 import { Header } from '../templates/header'
-import { Workspace } from '../templates/workspace'
 import { Footer } from '../templates/footer'
+import { Main } from '../../styled'
 
 interface StateToProps {
   loggedIn: boolean
@@ -20,7 +20,7 @@ interface StateToProps {
 const Pages: React.FC<StateToProps> = ({ loggedIn }) => (
   <>
     <Header />
-    <Workspace>
+    <Main>
       <PrivateRoute
         exact
         path={Object.values(PrivateRoutes).map((path) => path)}
@@ -29,7 +29,7 @@ const Pages: React.FC<StateToProps> = ({ loggedIn }) => (
       />
       <GuestRoute exact path={Object.values(GuestRoutes).map((path) => path)} loggedIn={loggedIn} component={GuestPages} />
       <Route exact path={Object.values(PublicRoutes).map((path) => path)} component={PublicPages} />
-    </Workspace>
+    </Main>
     <Footer />
   </>
 )
