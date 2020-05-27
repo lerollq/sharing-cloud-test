@@ -1,39 +1,45 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { MenuItem } from '../../atoms/MenuItem'
-import { userActions } from '../../../store/user'
 import { Link } from '../../atoms/Link'
 import { PrivateRoutes } from '../../../config/routes'
 import { Button } from '../../../styled'
+import { api } from '../../../api'
+import { ActionTypeKeys } from '../../../store/user/types'
+import { notif } from '../../../helpers/toast'
 
-interface DispatchProps {
-  getLogoutAsyncAction(): Promise<void>
-}
-
-export type NavMenuPrivateProps = DispatchProps
-
-const NavMenuPrivate: React.FC<NavMenuPrivateProps> = ({ getLogoutAsyncAction }) => {
+const NavMenuPrivate: React.FC = () => {
   const [loading, setLoading] = useState(false)
+  const dispatch = useDispatch()
+
   const handleOnLogout = () => {
+    // Set loading to true , this will display the loading spinner
     setLoading(true)
-    getLogoutAsyncAction().catch(() => setLoading(false))
+    api.getLogout().then((response) => {
+      setLoading(false)
+      if (response.success) {
+        // Remove bearer token from local storage
+        localStorage.removeItem('token')
+        // Then remove user's information in user reducer
+        return dispatch({
+          type: ActionTypeKeys.USER_DELETE,
+        })
+      }
+      notif.error(response.message)
+    })
   }
   return (
-    <>
+    <React.Fragment>
       <MenuItem>
         <Link to={PrivateRoutes.Dashboard}>Dashboard</Link>
       </MenuItem>
       <MenuItem>
-        <Button onClick={handleOnLogout} loading={loading}>
+        <Button onClick={handleOnLogout} loading={loading} color='primary'>
           Logout
         </Button>
       </MenuItem>
-    </>
+    </React.Fragment>
   )
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch) => ({
-  getLogoutAsyncAction: () => dispatch(userActions.getLogoutAsyncAction()),
-})
-
-export default connect(null, mapDispatchToProps)(NavMenuPrivate)
+export default NavMenuPrivate
