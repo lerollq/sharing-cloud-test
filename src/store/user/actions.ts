@@ -32,33 +32,19 @@ const getMeAsyncAction = (): ThunkResult<Promise<void>> => async (dispatch) => {
   })
 }
 
-const getLoginAsyncAction = (): ThunkResult<Promise<void>> => async (dispatch) => api.getLogin().then((response) => {
-  if (response.success) {
-    // If success set bearer token in local storage
-    localStorage.setItem('token', response.data.token)
-    // Then call getMeAsyncAction to retrieve user profil
-    return dispatch(getMeAsyncAction())
-  }
-  notif.error(response.message)
-  return Promise.reject()
-})
-
-const getLogoutAsyncAction = (): ThunkResult<Promise<void>> => async (dispatch) => api.getLogout().then((response) => {
-  if (response.success) {
-    // Remove bearer token from local storage
-    localStorage.removeItem('token')
-    // Then remove user's information in user reducer
-    dispatch({
-      type: ActionTypeKeys.USER_DELETE,
-    })
-    return Promise.resolve()
-  }
-  notif.error(response.message)
-  return Promise.reject()
-})
+const getLoginAsyncAction = (): ThunkResult<Promise<void>> => async (dispatch) =>
+  api.getLogin().then((response) => {
+    if (response.success) {
+      // If success set bearer token in local storage
+      localStorage.setItem('token', response.data.token)
+      // Then call getMeAsyncAction to retrieve user profil
+      return dispatch(getMeAsyncAction())
+    }
+    notif.error(response.message)
+    return Promise.reject()
+  })
 
 export const actions = {
   getLoginAsyncAction,
   getMeAsyncAction,
-  getLogoutAsyncAction,
 }
