@@ -1,10 +1,23 @@
-import styled, { css } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 
-interface StyledProps {
+export interface ButtonStyledProps {
   color?: 'primary' | 'secondary'
   block?: boolean
   outlined?: boolean
+  loading?: boolean
 }
+
+const loadingOpacity = keyframes`
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+`
 
 const BaseButton = styled.button`
   display: inline-block;
@@ -21,7 +34,7 @@ const BaseButton = styled.button`
   }
 `
 
-export default styled(BaseButton)<StyledProps>`
+export default styled(BaseButton)<ButtonStyledProps>`
   ${({ theme, color, outlined }) =>
     color === 'primary' &&
     css`
@@ -35,15 +48,21 @@ export default styled(BaseButton)<StyledProps>`
       `}
     `}
 
+    ${({ loading }) =>
+      loading &&
+      css`
+        animation: ${loadingOpacity} 1s linear infinite;
+      `}
+
     ${({ outlined }) =>
       outlined &&
       css`
         background-color: transparent;
       `}
 
-  ${({ block }) =>
-    block &&
-    css`
-      width: 100%;
-    `}
+    ${({ block }) =>
+      block &&
+      css`
+        width: 100%;
+      `}
 `
