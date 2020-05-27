@@ -6,10 +6,10 @@ import { Row } from '../../atoms/Grid'
 import { Input } from '../../atoms/Input'
 import { FormGroup } from '../../atoms/FormGroup'
 import { Label } from '../../atoms/Label'
-import { LoadingButton } from '../../molecules/LoadingButton'
 import { bookingsActions } from '../../../store/bookings'
 import { SpanFeedback } from '../../atoms/Span'
 import { validators } from '../../../helpers/validators'
+import { Button } from '../../../styled'
 
 interface DispatchToProps {
   postBookingAsyncAction(name: string, duration: number): Promise<void>
@@ -49,7 +49,7 @@ const BookForm: React.FC<BookFormProps> = ({
                 {bookDuration}
               </Label>
               <Input
-                type="range"
+                type='range'
                 value={bookDuration}
                 step={bookingDurationStep}
                 min={minimumBookingDuration}
@@ -61,20 +61,20 @@ const BookForm: React.FC<BookFormProps> = ({
                   bookDuration,
                   minimumBookingDuration,
                   maximumBookingDuration,
-                  bookingDurationStep,
+                  bookingDurationStep
                 )}
               </SpanFeedback>
             </FormGroup>
 
             <FormGroup>
               <Label>Name:</Label>
-              <Input type="text" value={bookName} onChange={(e) => setBookName(e.target.value)} />
+              <Input type='text' value={bookName} onChange={(e) => setBookName(e.target.value)} />
               <SpanFeedback>{validators.lengthBookName(bookName)}</SpanFeedback>
             </FormGroup>
 
-            <LoadingButton color="primary" block type="submit" loading={loading}>
+            <Button color='primary' block type='submit' loading={loading} disabled={loading}>
               Book
-            </LoadingButton>
+            </Button>
           </Row>
         </form>
       </CardBody>
@@ -87,7 +87,8 @@ const mapStateToProps = (state: AppState) => ({
 })
 
 const mapDispatchToProps = (dispatch: ThunkDispatch) => ({
-  postBookingAsyncAction: (name: string, duration: number) => dispatch(bookingsActions.postBookingAsyncAction(name, duration)),
+  postBookingAsyncAction: (name: string, duration: number) =>
+    dispatch(bookingsActions.postBookingAsyncAction(name, duration)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookForm)

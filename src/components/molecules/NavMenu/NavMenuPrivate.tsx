@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { MenuItem } from '../../atoms/MenuItem'
-import { LoadingButton } from '../LoadingButton'
 import { userActions } from '../../../store/user'
 import { Link } from '../../atoms/Link'
 import { PrivateRoutes } from '../../../config/routes'
+import { Button } from '../../../styled'
 
 interface DispatchProps {
   getLogoutAsyncAction(): Promise<void>
@@ -24,9 +24,9 @@ const NavMenuPrivate: React.FC<NavMenuPrivateProps> = ({ getLogoutAsyncAction })
         <Link to={PrivateRoutes.Dashboard}>Dashboard</Link>
       </MenuItem>
       <MenuItem>
-        <LoadingButton onClick={handleOnLogout} loading={loading}>
+        <Button onClick={handleOnLogout} loading={loading}>
           Logout
-        </LoadingButton>
+        </Button>
       </MenuItem>
     </>
   )

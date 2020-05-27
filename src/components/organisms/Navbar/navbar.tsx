@@ -13,7 +13,7 @@ const Navbar: React.FC<OwnProps> = ({ className }) => {
   return (
     <nav className={className}>
       <NavBrand />
-      <BurgerButton onClick={() => setCollapse(!collapse)} color="primary" borderless />
+      <BurgerButton onClick={() => setCollapse(!collapse)} color='primary' />
       <NavMenu show={collapse} />
     </nav>
   )

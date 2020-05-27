@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Card, CardHeader, CardBody } from '../../atoms/Card'
 import { Row, Col } from '../../atoms/Grid'
-import { LoadingButton } from '../../molecules/LoadingButton'
 import { userActions } from '../../../store/user'
+import { Button } from '../../../styled'
 
 const profilPic = require('../../../assets/images/profil_pic.svg')
 
@@ -22,24 +22,24 @@ const Signin: React.FC<DispatchProps> = ({ getLoginAsyncAction }) => {
   }
 
   return (
-    <Row justifyContent="center">
+    <Row justifyContent='center'>
       <Col xs={12} sm={8} md={6} lg={4}>
         <Card>
-          <CardHeader justifyContent="center">
+          <CardHeader justifyContent='center'>
             <Col>
-              <Row justifyContent="center">
-                <img width="50%" src={profilPic} title="Profil illustration" alt="Profile illustration" />
+              <Row justifyContent='center'>
+                <img width='50%' src={profilPic} title='Profil illustration' alt='Profile illustration' />
               </Row>
-              <Row justifyContent="center">
+              <Row justifyContent='center'>
                 <h1>Welcome</h1>
               </Row>
             </Col>
           </CardHeader>
           <CardBody>
-            <Row justifyContent="center">
-              <LoadingButton color="primary" block onClick={handleOnConnect} loading={loading}>
+            <Row justifyContent='center'>
+              <Button color='primary' block onClick={handleOnConnect} loading={loading} disabled={loading}>
                 Connect
-              </LoadingButton>
+              </Button>
             </Row>
           </CardBody>
         </Card>

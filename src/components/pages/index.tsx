@@ -9,17 +9,19 @@ import { GuestRoute } from '../utils/routing/GuestRoute'
 import { userSelectors } from '../../store/user'
 import { PrivateRoutes, GuestRoutes, PublicRoutes } from '../../config/routes'
 import { PrivatePages } from './private'
-import { Header } from '../templates/header'
-import { Footer } from '../templates/footer'
-import { Main } from '../../styled'
+import { Main, Header, Footer } from '../../styled'
+import { Navbar } from '../organisms/Navbar'
+import { Copyright } from '../atoms/Copyright'
 
 interface StateToProps {
   loggedIn: boolean
 }
 
 const Pages: React.FC<StateToProps> = ({ loggedIn }) => (
-  <>
-    <Header />
+  <React.Fragment>
+    <Header>
+      <Navbar />
+    </Header>
     <Main>
       <PrivateRoute
         exact
@@ -30,8 +32,10 @@ const Pages: React.FC<StateToProps> = ({ loggedIn }) => (
       <GuestRoute exact path={Object.values(GuestRoutes).map((path) => path)} loggedIn={loggedIn} component={GuestPages} />
       <Route exact path={Object.values(PublicRoutes).map((path) => path)} component={PublicPages} />
     </Main>
-    <Footer />
-  </>
+    <Footer>
+      <Copyright />
+    </Footer>
+  </React.Fragment>
 )
 
 const mapStateToProps = (state: AppState) => ({
