@@ -1,23 +1,25 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, ButtonProps } from '../../atoms/Button'
+import { Button } from '../../../styled'
+import { ButtonStyledProps } from '../../../styled/components/button'
 
-interface OwnProps extends ButtonProps {
+type OwnProps = React.HTMLAttributes<HTMLButtonElement> & ButtonStyledProps
+
+interface StyledProps {
   className?: string
 }
 
-const BurgerButton: React.FC<OwnProps> = ({ className, ...buttonProps }) => (
-  <div className={className}>
-    <Button {...buttonProps} fontSize="x-large" borderless>
-      <i className="fas fa-bars" />
-    </Button>
-  </div>
+const BurgerButton: React.FC<StyledProps & OwnProps> = ({ className, ...props }) => (
+  <Button {...props} className={className}>
+    <i className='fas fa-bars' />
+  </Button>
 )
 
 export default styled(BurgerButton)`
   display: none;
   margin-left: auto;
   transition: transform 0.4s;
+  font-size: x-large;
   > button:focus {
     outline: none;
   }
