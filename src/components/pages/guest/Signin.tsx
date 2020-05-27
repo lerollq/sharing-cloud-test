@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { userActions } from '../../../store/user'
 import { Button, Card, CardHeader, CardBody, Grid } from '../../../styled'
+import { notif } from '../../../helpers/toast'
 
 const profilPic = require('../../../assets/images/profil_pic.svg')
 
@@ -14,8 +15,9 @@ const Signin: React.FC<DispatchProps> = ({ getLoginAsyncAction }) => {
 
   const handleOnConnect = async () => {
     setLoading(true)
-    getLoginAsyncAction().catch(() => {
+    getLoginAsyncAction().catch((err) => {
       setLoading(false)
+      notif.error(err.message)
     })
   }
 
