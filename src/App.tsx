@@ -16,7 +16,7 @@ const App: React.FC<DispatchProps> = ({ getMeAsyncAction }) => {
     })
   }, [getMeAsyncAction])
 
-  return <>{loading ? 'loading' : <Pages />}</>
+  return <>{!loading && <Pages />}</>
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch) => ({
