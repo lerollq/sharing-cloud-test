@@ -8,7 +8,7 @@ module.exports = {
       version: 'detect',
     },
   },
-  ignorePatterns: ['*serviceWorker.ts'],
+  ignorePatterns: ['serviceWorker.ts', 'setupTests.ts'],
   extends: ['airbnb-typescript'],
   plugins: ['@typescript-eslint'],
   rules: {
