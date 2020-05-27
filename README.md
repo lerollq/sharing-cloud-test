@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/lerollq/sharing-cloud-test.svg?branch=master)](https://travis-ci.com/lerollq/sharing-cloud-test)
+
 # SharingCloud Test
 
 ## Requirements
