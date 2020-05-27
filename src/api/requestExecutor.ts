@@ -15,14 +15,19 @@ interface ErrorResponse {
 type ResponseType<T> = SuccessResponse<T> | ErrorResponse
 
 async function handleResponse<T>(response: Response): Promise<ResponseType<T>> {
+  const jsonResponse = (await response.json()) as ResponseType<T>
   if (response.status === 401) {
     // If 401 UNAUTHORIZED, remove first bearer token in local storage then dispatch USER_DELETE type which will remove user's information in user reducer
     // then will redirect the user to the login page
-    localStorage.removeItem('item')
+    localStorage.removeItem('token')
     store.dispatch({ type: ActionTypeKeys.USER_DELETE })
+    return Promise.reject(jsonResponse)
+  }
+  if (jsonResponse.success) {
+    return Promise.resolve(jsonResponse)
   }
   // Return parsed JSON Response
-  return response.json()
+  return Promise.reject(jsonResponse)
 }
 
 class RequestExecutor {
