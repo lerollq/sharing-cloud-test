@@ -15,19 +15,8 @@ export type NavMenuPrivateProps = DispatchProps
 const NavMenuPrivate: React.FC<NavMenuPrivateProps> = ({ getLogoutAsyncAction }) => {
   const [loading, setLoading] = useState(false)
   const handleOnLogout = () => {
-    // Since we dont want to update the component in case of success logout
-    // We need to keep track if component still mounted with this boolean value
-    let mounted = true
     setLoading(true)
-    getLogoutAsyncAction().finally(() => {
-      // Then check if mounted still true
-      if (mounted) {
-        // If true we can set loading to false
-        setLoading(false)
-      }
-    })
-    // Set mounted to false, when component unmount
-    return () => (mounted = false)
+    getLogoutAsyncAction().catch(() => setLoading(false))
   }
   return (
     <>
@@ -35,7 +24,7 @@ const NavMenuPrivate: React.FC<NavMenuPrivateProps> = ({ getLogoutAsyncAction })
         <Link to={PrivateRoutes.Dashboard}>Dashboard</Link>
       </MenuItem>
       <MenuItem>
-        <Button color='primary' onClick={handleOnLogout} loading={loading}>
+        <Button onClick={handleOnLogout} loading={loading}>
           Logout
         </Button>
       </MenuItem>
