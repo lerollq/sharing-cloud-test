@@ -13,6 +13,7 @@ declare global {
 declare module 'styled-components' {
   export interface DefaultTheme {
     breakpoints: {
+      xs: string
       sm: string
       md: string
       lg: string
