@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import { resourceSelectors, resourceActions } from '../../../store/resource'
 import { connect } from 'react-redux'
+import { resourceSelectors, resourceActions } from '../../../store/resource'
 import { Card, CardHeader } from '../../atoms/Card'
 import { LoadingCardBody } from '../../molecules/LoadingCardBody'
 import { Row } from '../../atoms/Grid'
@@ -22,7 +22,9 @@ interface StateToProps {
 type ResourceDetailsProps = StateToProps & DispatchToProps
 
 const ResourceDetails: React.FC<ResourceDetailsProps> = React.memo(
-  ({ loaded, loading, getResourceAsyncAction, resource, bookingsTime }) => {
+  ({
+    loaded, loading, getResourceAsyncAction, resource, bookingsTime,
+  }) => {
     const [available, setAvailable] = useState(false)
 
     /**
@@ -33,7 +35,7 @@ const ResourceDetails: React.FC<ResourceDetailsProps> = React.memo(
     const checkAvailability = useCallback(() => {
       const currentTime = new Date().getTime()
       const isAvailable = !bookingsTime.some(
-        ({ end, start }) => currentTime > new Date(start).getTime() && currentTime < new Date(end).getTime()
+        ({ end, start }) => currentTime > new Date(start).getTime() && currentTime < new Date(end).getTime(),
       )
       if (isAvailable !== available) {
         setAvailable(isAvailable)
@@ -47,12 +49,8 @@ const ResourceDetails: React.FC<ResourceDetailsProps> = React.memo(
       }
 
       // Start interval to check resource availability
-      const intervalId = setInterval(
-        (function iife() {
-          checkAvailability()
-        })(),
-        1000
-      )
+      checkAvailability()
+      const intervalId = setInterval(checkAvailability, 1000)
 
       return () => {
         // Properly delete interval
@@ -63,25 +61,32 @@ const ResourceDetails: React.FC<ResourceDetailsProps> = React.memo(
 
     return (
       <Card>
-        <CardHeader alignItems='center' justifyContent='space-between'>
-          <h2> {resource.name}</h2>
+        <CardHeader alignItems="center" justifyContent="space-between">
+          <h2>
+            {' '}
+            {resource.name}
+          </h2>
           <Badge color={available ? 'success' : 'danger'}>{available ? 'Available' : 'Not Available'}</Badge>
         </CardHeader>
         <LoadingCardBody loading={loading}>
           <Row>
             <strong>Minimum booking reservation:</strong>
-            {resource.minimumBookingDuration} minutes
+            {resource.minimumBookingDuration}
+            {' '}
+            minutes
           </Row>
           <br />
           <Row>
             <strong>Maximum booking reservation:</strong>
-            {resource.maximumBookingDuration} minutes
+            {resource.maximumBookingDuration}
+            {' '}
+            minutes
           </Row>
           <br />
         </LoadingCardBody>
       </Card>
     )
-  }
+  },
 )
 
 const mapStateToProps = (state: AppState) => ({

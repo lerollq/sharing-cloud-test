@@ -13,9 +13,7 @@ const selectBookingsById = createSelector(getBookingById, (booking) => ({
   end: booking.end,
   bookerId: booking.userId,
 }))
-const selectBookingsTimes = createSelector(getState, (state) => {
-  return state.bookings.map((b) => ({ start: b.start, end: b.end }))
-})
+const selectBookingsTimes = createSelector(getState, (state) => state.bookings.map((b) => ({ start: b.start, end: b.end })))
 
 export const selectors = {
   selectLoaded,

@@ -8,7 +8,7 @@ interface OwnProps {
 
 const NavBrand: React.FC<OwnProps> = ({ className }) => (
   <div className={className}>
-    <Link to='/'>Micro Booking</Link>
+    <Link to="/">Micro Booking</Link>
   </div>
 )
 

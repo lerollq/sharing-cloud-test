@@ -12,7 +12,7 @@ const LoadingCardBody: React.FC<LoadingCardBodyProps> = ({ loading, children, ..
     {!loading ? (
       children
     ) : (
-      <Row justifyContent='center'>
+      <Row justifyContent="center">
         <Spinner />
       </Row>
     )}

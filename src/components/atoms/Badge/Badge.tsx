@@ -10,5 +10,5 @@ export default styled.div<StyledProps>`
   text-align: center;
   color: white;
   font-weight: bold;
-  background-color: ${({ color }) => (color === 'success' ? `green` : 'red')};
+  background-color: ${({ color }) => (color === 'success' ? 'green' : 'red')};
 `

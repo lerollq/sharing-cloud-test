@@ -8,8 +8,8 @@ interface OwnProps extends ButtonProps {
 
 const BurgerButton: React.FC<OwnProps> = ({ className, ...buttonProps }) => (
   <div className={className}>
-    <Button {...buttonProps} fontSize='x-large' borderless>
-      <i className='fas fa-bars'></i>
+    <Button {...buttonProps} fontSize="x-large" borderless>
+      <i className="fas fa-bars" />
     </Button>
   </div>
 )

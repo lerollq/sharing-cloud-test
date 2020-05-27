@@ -10,22 +10,19 @@ export default styled.div<StyledProp>`
   display: flex;
   width: 100%;
   margin-bottom:5px;
-  ${({ flexWrap }) =>
-    flexWrap
-      ? css`
+  ${({ flexWrap }) => (flexWrap
+    ? css`
           flex-wrap: ${flexWrap};
         `
-      : css`
+    : css`
           flex-wrap: wrap;
-        `}
-  ${({ alignItems }) =>
-    alignItems &&
-    css`
+        `)}
+  ${({ alignItems }) => alignItems
+    && css`
       align-items: ${alignItems};
     `}
-  ${({ justifyContent }) =>
-    justifyContent &&
-    css`
+  ${({ justifyContent }) => justifyContent
+    && css`
       justify-content: ${justifyContent};
     `}
 `

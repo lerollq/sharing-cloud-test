@@ -18,41 +18,36 @@ const StyledCol = styled.div<StyledProp>`
   width: auto;
 
   @media only screen and (min-width: 0px) {
-    ${({ xs }) =>
-      xs &&
-      `
+    ${({ xs }) => xs
+      && `
         width: ${(xs / 12) * 100}%;
       `};
   }
 
   @media only screen and (min-width: 540px) {
-    ${({ sm }) =>
-      sm &&
-      `
+    ${({ sm }) => sm
+      && `
         width: ${(sm / 12) * 100}%;
       `};
   }
 
   @media only screen and (min-width: 720px) {
-    ${({ md }) =>
-      md &&
-      `
+    ${({ md }) => md
+      && `
         width: ${(md / 12) * 100}%;
       `};
   }
 
   @media only screen and (min-width: 960px) {
-    ${({ lg }) =>
-      lg &&
-      `
+    ${({ lg }) => lg
+      && `
         width: ${(lg / 12) * 100}%;
       `};
   }
 
   @media only screen and (min-width: 1140px) {
-    ${({ xl }) =>
-      xl &&
-      `
+    ${({ xl }) => xl
+      && `
         width: ${(xl / 12) * 100}%;
       `};
   }

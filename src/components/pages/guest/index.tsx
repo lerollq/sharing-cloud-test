@@ -4,7 +4,7 @@ import { GuestRoutes } from '../../../config/routes'
 import Signin from './Signin'
 
 export const GuestPages: React.FC = () => (
-  <React.Fragment>
+  <>
     <Route exact path={GuestRoutes.Signin} component={Signin} />
-  </React.Fragment>
+  </>
 )

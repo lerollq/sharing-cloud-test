@@ -1,6 +1,7 @@
 import environments from '../config/environments'
 import store from '../store'
 import { ActionTypeKeys } from '../store/user/types'
+
 interface SuccessResponse<T> {
   success: true
   data: T

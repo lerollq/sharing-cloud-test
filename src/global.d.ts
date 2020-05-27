@@ -1,6 +1,6 @@
-import rootReducer from './store/rootReducer'
 import { ThunkAction, ThunkDispatch } from 'redux-thunk'
 import { AnyAction } from 'redux'
+import rootReducer from './store/rootReducer'
 
 declare global {
   type AppState = ReturnType<typeof rootReducer>

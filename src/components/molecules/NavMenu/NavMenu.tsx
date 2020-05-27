@@ -1,7 +1,7 @@
 import React from 'react'
-import { userSelectors } from '../../../store/user'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
+import { userSelectors } from '../../../store/user'
 import NavMenuGuest from './NavMenuGuest'
 import NavMenuPrivate from './NavMenuPrivate'
 

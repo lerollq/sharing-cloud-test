@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { userActions } from './store/user'
 import { connect } from 'react-redux'
+import { userActions } from './store/user'
 import Pages from './components/pages'
 
 interface DispatchProps {
@@ -16,7 +16,7 @@ const App: React.FC<DispatchProps> = ({ getMeAsyncAction }) => {
     })
   }, [getMeAsyncAction])
 
-  return <React.Fragment>{loading ? 'loading' : <Pages />}</React.Fragment>
+  return <>{loading ? 'loading' : <Pages />}</>
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch) => ({

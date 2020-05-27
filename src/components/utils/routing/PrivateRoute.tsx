@@ -1,5 +1,7 @@
 import React from 'react'
-import { Route, Redirect, RouteComponentProps, RouteProps } from 'react-router'
+import {
+  Route, Redirect, RouteComponentProps, RouteProps,
+} from 'react-router'
 import { GuestRoutes } from '../../../config/routes'
 
 interface Props extends RouteProps {

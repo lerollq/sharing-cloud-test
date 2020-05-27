@@ -32,31 +32,26 @@ export default styled.button<StyledProps>`
   cursor: pointer;
   font-size: large;
   font-weight: bold;
-  ${({ color }) =>
-    color === 'primary' &&
-    `
+  ${({ color }) => color === 'primary'
+    && `
       background: purple;
       color: white;
     `}
-  ${({ disabled }) =>
-    disabled &&
-    `
+  ${({ disabled }) => disabled
+    && `
       cursor: not-allowed;
       opacity: 0.5;
     `}
-  ${({ block }) =>
-    block &&
-    `
+  ${({ block }) => block
+    && `
       width: 100%;
     `}
-  ${({ borderless }) =>
-    borderless &&
-    `
+  ${({ borderless }) => borderless
+    && `
       border: none;
     `}
-  ${({ fontSize }) =>
-    fontSize &&
-    `
+  ${({ fontSize }) => fontSize
+    && `
       font-size: ${fontSize};
     `}
 `

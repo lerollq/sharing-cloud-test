@@ -1,5 +1,5 @@
-import { InitialState, ActionTypes, ActionTypeKeys } from './types'
 import { Reducer } from 'redux'
+import { InitialState, ActionTypes, ActionTypeKeys } from './types'
 
 const initialState: InitialState = {
   loaded: false,

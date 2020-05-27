@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { MenuItem } from '../../atoms/MenuItem'
-import { LoadingButton } from '../../molecules/LoadingButton'
-import { userActions } from '../../../store/user'
 import { connect } from 'react-redux'
+import { MenuItem } from '../../atoms/MenuItem'
+import { LoadingButton } from '../LoadingButton'
+import { userActions } from '../../../store/user'
 import { Link } from '../../atoms/Link'
 import { PrivateRoutes } from '../../../config/routes'
 
@@ -19,7 +19,7 @@ const NavMenuPrivate: React.FC<NavMenuPrivateProps> = ({ getLogoutAsyncAction })
     getLogoutAsyncAction().catch(() => setLoading(false))
   }
   return (
-    <React.Fragment>
+    <>
       <MenuItem>
         <Link to={PrivateRoutes.Dashboard}>Dashboard</Link>
       </MenuItem>
@@ -28,7 +28,7 @@ const NavMenuPrivate: React.FC<NavMenuPrivateProps> = ({ getLogoutAsyncAction })
           Logout
         </LoadingButton>
       </MenuItem>
-    </React.Fragment>
+    </>
   )
 }
 

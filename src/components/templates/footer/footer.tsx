@@ -7,11 +7,15 @@ interface Props {
 
 const Footer: React.FC<Props> = ({ className }) => (
   <footer className={className}>
-    Made with{' '}
-    <span role='img' aria-label='heart'>
+    Made with
+    {' '}
+    <span role="img" aria-label="heart">
       ❤️
-    </span>{' '}
-    by LaSmala - No Copyright {new Date().getFullYear()}
+    </span>
+    {' '}
+    by LaSmala - No Copyright
+    {' '}
+    {new Date().getFullYear()}
   </footer>
 )
 

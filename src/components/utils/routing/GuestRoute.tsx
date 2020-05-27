@@ -1,6 +1,8 @@
 import React from 'react'
+import {
+  Route, Redirect, RouteComponentProps, RouteProps,
+} from 'react-router'
 import { PrivateRoutes } from '../../../config/routes'
-import { Route, Redirect, RouteComponentProps, RouteProps } from 'react-router'
 
 interface Props extends RouteProps {
   loggedIn: boolean

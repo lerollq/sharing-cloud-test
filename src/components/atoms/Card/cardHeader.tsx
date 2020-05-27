@@ -14,22 +14,19 @@ export default styled(CardHeader)`
   display: flex;
   padding: 1rem 2rem;
   width: 100%;
-  ${({ flexWrap }) =>
-    flexWrap
-      ? css`
+  ${({ flexWrap }) => (flexWrap
+    ? css`
           flex-wrap: ${flexWrap};
         `
-      : css`
+    : css`
           flex-wrap: wrap;
-        `}
-  ${({ alignItems }) =>
-    alignItems &&
-    css`
+        `)}
+  ${({ alignItems }) => alignItems
+    && css`
       align-items: ${alignItems};
     `}
-  ${({ justifyContent }) =>
-    justifyContent &&
-    css`
+  ${({ justifyContent }) => justifyContent
+    && css`
       justify-content: ${justifyContent};
     `}
 `

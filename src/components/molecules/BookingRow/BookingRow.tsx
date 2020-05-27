@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { bookingsSelectors, bookingsActions } from '../../../store/bookings'
 import { connect } from 'react-redux'
-import { Row, Col } from '../../atoms/Grid'
 import styled from 'styled-components'
+import { bookingsSelectors, bookingsActions } from '../../../store/bookings'
+import { Row, Col } from '../../atoms/Grid'
 import { userSelectors } from '../../../store/user'
-import { LoadingButton } from '../../molecules/LoadingButton'
+import { LoadingButton } from '../LoadingButton'
 
 interface OwnProps {
   bookingId: string
@@ -60,10 +60,11 @@ const BookingRow: React.FC<Props> = ({
         <Col xs={12} xl={3}>
           <LoadingButton
             block
-            color='primary'
+            color="primary"
             onClick={handleOnDelete}
             disabled={userId !== bookerId}
-            loading={deleteLoading}>
+            loading={deleteLoading}
+          >
             Delete
           </LoadingButton>
         </Col>

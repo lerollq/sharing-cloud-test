@@ -1,23 +1,25 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 2020,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-    },
+    project: './tsconfig.json',
   },
   settings: {
     react: {
       version: 'detect',
     },
   },
-  extends: ['plugin:react/recommended', 'plugin:@typescript-eslint/recommended'],
+  ignorePatterns: ['*serviceWorker.ts'],
+  extends: ['airbnb-typescript'],
+  plugins: ['@typescript-eslint'],
   rules: {
-    '@typescript-eslint/no-explicit-any': 0,
+    'linebreak-style': 0,
+    '@typescript-eslint/semi': 0,
+    'import/prefer-default-export': 0,
     'react/prop-types': 0,
-    'react/display-name': 0,
-    '@typescript-eslint/explicit-module-boundary-types': 0,
-    '@typescript-eslint/parser': 0,
+    'react/jsx-props-no-spreading': 0,
+    'max-len': 0,
+    '@typescript-eslint/no-use-before-define': 0,
+    'class-methods-use-this': 0,
+    radix: 0,
   },
 }
