@@ -1,9 +1,8 @@
 import React from 'react'
-import { CardBodyProps, CardBody } from '../../atoms/Card'
+import { CardBody, Grid } from '../../../styled'
 import { Spinner } from '../../atoms/Spinner'
-import { Row } from '../../atoms/Grid'
 
-interface LoadingCardBodyProps extends CardBodyProps {
+interface LoadingCardBodyProps {
   loading?: boolean
 }
 
@@ -12,9 +11,9 @@ const LoadingCardBody: React.FC<LoadingCardBodyProps> = ({ loading, children, ..
     {!loading ? (
       children
     ) : (
-      <Row justifyContent="center">
+      <Grid.Row justifyContent='center'>
         <Spinner />
-      </Row>
+      </Grid.Row>
     )}
   </CardBody>
 )

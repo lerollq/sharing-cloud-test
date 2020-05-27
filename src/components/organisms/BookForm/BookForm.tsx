@@ -1,15 +1,10 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { resourceSelectors } from '../../../store/resource'
-import { Card, CardHeader, CardBody } from '../../atoms/Card'
-import { Row } from '../../atoms/Grid'
-import { Input } from '../../atoms/Input'
-import { FormGroup } from '../../atoms/FormGroup'
-import { Label } from '../../atoms/Label'
 import { bookingsActions } from '../../../store/bookings'
 import { SpanFeedback } from '../../atoms/Span'
 import { validators } from '../../../helpers/validators'
-import { Button } from '../../../styled'
+import { Button, FormGroup, Label, Input, Card, CardBody, CardHeader, Grid } from '../../../styled'
 
 interface DispatchToProps {
   postBookingAsyncAction(name: string, duration: number): Promise<void>
@@ -42,7 +37,7 @@ const BookForm: React.FC<BookFormProps> = ({
       </CardHeader>
       <CardBody>
         <form onSubmit={handleOnSubmit}>
-          <Row>
+          <Grid.Row>
             <FormGroup>
               <Label>
                 Duration:
@@ -75,7 +70,7 @@ const BookForm: React.FC<BookFormProps> = ({
             <Button color='primary' block type='submit' loading={loading} disabled={loading}>
               Book
             </Button>
-          </Row>
+          </Grid.Row>
         </form>
       </CardBody>
     </Card>

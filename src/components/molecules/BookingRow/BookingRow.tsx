@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { bookingsSelectors, bookingsActions } from '../../../store/bookings'
-import { Row, Col } from '../../atoms/Grid'
 import { userSelectors } from '../../../store/user'
-import { Button } from '../../../styled'
+import { Button, Grid } from '../../../styled'
 
 interface OwnProps {
   bookingId: string
@@ -46,8 +45,8 @@ const BookingRow: React.FC<Props> = ({
   }
   return (
     <div className={className}>
-      <Row>
-        <Col xs={12} xl={9}>
+      <Grid.Row>
+        <Grid.Col xs={12} xl={9}>
           <strong>From:&nbsp;</strong>
           {new Date(startTime).toLocaleString()}
           <br />
@@ -56,8 +55,8 @@ const BookingRow: React.FC<Props> = ({
           <br />
           <strong>Subject:&nbsp;</strong>
           {name}
-        </Col>
-        <Col xs={12} xl={3}>
+        </Grid.Col>
+        <Grid.Col xs={12} xl={3}>
           <Button
             block
             color='primary'
@@ -66,8 +65,8 @@ const BookingRow: React.FC<Props> = ({
             loading={deleteLoading}>
             Delete
           </Button>
-        </Col>
-      </Row>
+        </Grid.Col>
+      </Grid.Row>
     </div>
   )
 }

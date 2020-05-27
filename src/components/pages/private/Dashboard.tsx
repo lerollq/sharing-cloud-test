@@ -1,25 +1,25 @@
 import React from 'react'
 import CurrentBookings from '../../organisms/CurrentBookings/CurrentBookings'
-import { Row, Col } from '../../atoms/Grid'
+import { Grid } from '../../../styled'
 import { ResourceDetails } from '../../organisms/ResourceDetails'
 import { BookForm } from '../../organisms/BookForm'
 
 const Dashboard: React.FC = () => (
-  <>
-    <Row justifyContent="center">
-      <Col sm={12} md={4}>
+  <React.Fragment>
+    <Grid.Row justifyContent='center'>
+      <Grid.Col sm={12} md={4}>
         <CurrentBookings />
-      </Col>
-      <Col sm={12} md={4}>
-        <Row>
+      </Grid.Col>
+      <Grid.Col sm={12} md={4}>
+        <Grid.Row>
           <ResourceDetails />
-        </Row>
-        <Row>
+        </Grid.Row>
+        <Grid.Row>
           <BookForm />
-        </Row>
-      </Col>
-    </Row>
-  </>
+        </Grid.Row>
+      </Grid.Col>
+    </Grid.Row>
+  </React.Fragment>
 )
 
 export default Dashboard

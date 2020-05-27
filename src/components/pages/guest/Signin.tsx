@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { Card, CardHeader, CardBody } from '../../atoms/Card'
-import { Row, Col } from '../../atoms/Grid'
 import { userActions } from '../../../store/user'
-import { Button } from '../../../styled'
+import { Button, Card, CardHeader, CardBody, Grid } from '../../../styled'
 
 const profilPic = require('../../../assets/images/profil_pic.svg')
 
@@ -22,29 +20,29 @@ const Signin: React.FC<DispatchProps> = ({ getLoginAsyncAction }) => {
   }
 
   return (
-    <Row justifyContent='center'>
-      <Col xs={12} sm={8} md={6} lg={4}>
+    <Grid.Row justifyContent='center'>
+      <Grid.Col xs={12} sm={8} md={6} lg={4}>
         <Card>
           <CardHeader justifyContent='center'>
-            <Col>
-              <Row justifyContent='center'>
+            <Grid.Col>
+              <Grid.Row justifyContent='center'>
                 <img width='50%' src={profilPic} title='Profil illustration' alt='Profile illustration' />
-              </Row>
-              <Row justifyContent='center'>
+              </Grid.Row>
+              <Grid.Row justifyContent='center'>
                 <h1>Welcome</h1>
-              </Row>
-            </Col>
+              </Grid.Row>
+            </Grid.Col>
           </CardHeader>
           <CardBody>
-            <Row justifyContent='center'>
+            <Grid.Row justifyContent='center'>
               <Button color='primary' block onClick={handleOnConnect} loading={loading} disabled={loading}>
                 Connect
               </Button>
-            </Row>
+            </Grid.Row>
           </CardBody>
         </Card>
-      </Col>
-    </Row>
+      </Grid.Col>
+    </Grid.Row>
   )
 }
 

@@ -1,12 +1,10 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { connect } from 'react-redux'
 import { resourceSelectors, resourceActions } from '../../../store/resource'
-import { Card, CardHeader } from '../../atoms/Card'
 import { LoadingCardBody } from '../../molecules/LoadingCardBody'
-import { Row } from '../../atoms/Grid'
 import { bookingsSelectors } from '../../../store/bookings'
 import { Resource } from '../../../store/resource/types'
-import { Badge } from '../../../styled'
+import { Badge, Card, CardHeader, Grid } from '../../../styled'
 
 interface DispatchToProps {
   getResourceAsyncAction(): Promise<void>
@@ -64,15 +62,15 @@ const ResourceDetails: React.FC<ResourceDetailsProps> = React.memo(
           <Badge color={available ? 'success' : 'danger'}>{available ? 'Available' : 'Not Available'}</Badge>
         </CardHeader>
         <LoadingCardBody loading={loading}>
-          <Row>
+          <Grid.Row>
             <strong>Minimum booking reservation:</strong>
             {resource.minimumBookingDuration} minutes
-          </Row>
+          </Grid.Row>
           <br />
-          <Row>
+          <Grid.Row>
             <strong>Maximum booking reservation:</strong>
             {resource.maximumBookingDuration} minutes
-          </Row>
+          </Grid.Row>
           <br />
         </LoadingCardBody>
       </Card>

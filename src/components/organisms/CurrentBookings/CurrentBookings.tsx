@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Card, CardHeader } from '../../atoms/Card'
+import { Card, CardHeader } from '../../../styled'
 import { bookingsActions, bookingsSelectors } from '../../../store/bookings'
 import { LoadingCardBody } from '../../molecules/LoadingCardBody'
 import { BookingRow } from '../../molecules/BookingRow'
@@ -17,9 +17,7 @@ interface DispatchToProps {
 
 export type Props = MapStateToProps & DispatchToProps
 
-const CurrentBookings: React.FC<Props> = ({
-  loaded, loading, getBookingsAsyncAction, bookingsId,
-}) => {
+const CurrentBookings: React.FC<Props> = ({ loaded, loading, getBookingsAsyncAction, bookingsId }) => {
   useEffect(() => {
     if (!loaded) {
       getBookingsAsyncAction()
