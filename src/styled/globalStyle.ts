@@ -6,7 +6,16 @@ export default createGlobalStyle`
   }
   html, 
   body, #root {
-    display: block;
+    height:100vh;
+  }
+
+  html, body {
+    display:block;    
+  }
+
+  #root {
+    display:flex;
+    flex-direction:column;
   }
 
   body {
