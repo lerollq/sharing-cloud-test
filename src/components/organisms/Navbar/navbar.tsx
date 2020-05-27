@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { NavMenu } from '../../molecules/NavMenu'
 import { NavBrand } from '../../atoms/NavBrand'
-import { BurgerButton } from '../../molecules/BurgerButton'
+import { BurgerButton } from '../../atoms/BurgerButton'
 
 interface OwnProps {
   className?: string
